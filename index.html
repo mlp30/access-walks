@@ -116,6 +116,107 @@
 
 
 
+      
+        var gps = new L.Control.Gps({
+            //autoActive:true,
+            autoCenter:true
+        });//inizialize control
+
+        gps
+        .on('gps:located', function(e) {
+            //  e.marker.bindPopup(e.latlng.toString()).openPopup()
+            console.log(e.latlng, map.getCenter())
+        })
+        .on('gps:disabled', function(e) {
+            e.marker.closePopup()
+        });
+
+        gps.addTo(map);
+
+        if(!navigator.geolocation) {
+        console.log("Your browser doesn't support geolocation feature!")
+        } else {
+            setInterval(() => {
+                navigator.geolocation.getCurrentPosition(getPosition)
+            }, 100000);
+        }
+      
+        var marker, circle;
+      
+        function getPosition(position){
+            // console.log(position)
+            var lat = position.coords.latitude
+            var long = position.coords.longitude
+            var accuracy = position.coords.accuracy
+      
+            if(marker) {
+                map.removeLayer(marker)
+            }
+            var gps = new L.Control.Gps({
+                //autoActive:true,
+                autoCenter:true
+            });//inizialize control
+      
+            gps
+            .on('gps:located', function(e) {
+                //  e.marker.bindPopup(e.latlng.toString()).openPopup()
+                console.log(e.latlng, map.getCenter())
+            })
+            .on('gps:disabled', function(e) {
+                e.marker.closePopup()
+            });
+      
+            gps.addTo(map);
+      
+            if(!navigator.geolocation) {
+            console.log("Your browser doesn't support geolocation feature!")
+        } else {
+            setInterval(() => {
+                navigator.geolocation.getCurrentPosition(getPosition)
+            }, 100000);
+        }
+      
+        var marker, circle;
+      
+        function getPosition(position){
+            // console.log(position)
+            var lat = position.coords.latitude
+            var long = position.coords.longitude
+            var accuracy = position.coords.accuracy
+      
+            if(marker) {
+                map.removeLayer(marker)
+            }
+      
+            if(circle) {
+                map.removeLayer(circle)
+            }
+      
+            marker = L.marker([lat, long])
+            circle = L.circle([lat, long], {radius: accuracy})
+      
+            var featureGroup = L.featureGroup([marker, circle]).addTo(map)
+      
+            //map.fitBounds(featureGroup.getBounds())
+      
+        }
+      
+      
+            if(circle) {
+                map.removeLayer(circle)
+            }
+      
+            marker = L.marker([lat, long])
+            circle = L.circle([lat, long], {radius: accuracy})
+      
+            var featureGroup = L.featureGroup([marker, circle]).addTo(map)
+      
+            //map.fitBounds(featureGroup.getBounds())
+      
+        }
+
+
+
         /*Legend specific*/
         var legend = L.control({ position: "topright" });
 
