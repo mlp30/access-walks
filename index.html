@@ -6,6 +6,8 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
+    <link rel="stylesheet" href="leaflet-gps.css" />
+
     <style type="text/css">
       body {
             padding: 0;
@@ -96,6 +98,8 @@
     integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
     crossorigin=""></script>
 
+    <script src="leaflet-gps.js"></script>
+
 
     <script>
         //var parse_georaster = require("georaster");
@@ -114,6 +118,22 @@
             position: 'bottomright'
         }).addTo(map);
 
+
+              var gps = new L.Control.Gps({
+            //autoActive:true,
+            autoCenter:true
+        });//inizialize control
+
+        gps
+        .on('gps:located', function(e) {
+            //  e.marker.bindPopup(e.latlng.toString()).openPopup()
+            console.log(e.latlng, map.getCenter())
+        })
+        .on('gps:disabled', function(e) {
+            e.marker.closePopup()
+        });
+
+        gps.addTo(map);
 
 
       
