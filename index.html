@@ -6,6 +6,10 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
     integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
     crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script src="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.umd.js"></script>
+    <link href="https://cdn.maptiler.com/maptiler-sdk-js/v2.3.0/maptiler-sdk.css" rel="stylesheet" />
+    <script src="https://cdn.maptiler.com/leaflet-maptilersdk/v2.0.0/leaflet-maptilersdk.js"></script>
     <link rel="stylesheet" href="leaflet-gps.css" />
     <link rel="stylesheet" href="leaflet.BigImage.min.css" />
     <link rel="stylesheet" href="leaflet-compass.min.css" />
@@ -116,8 +120,15 @@
 
         var map = L.map('map',{ zoomControl: false }).setView([52.907137,-1.409850], 7); //final value sets the zoom, higher value = more zoom!
 
-        L.tileLayer('https://api.maptiler.com/maps/topo-v2/style.json?key=vuemkMjb7qtDVkeM7Bq2', {
-        attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        //L.tileLayer('https://api.maptiler.com/maps/topo-v2/style.json?key=vuemkMjb7qtDVkeM7Bq2', {
+        //attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+        //}).addTo(map);
+
+        const key = 'vuemkMjb7qtDVkeM7Bq2';
+        const map = L.map('map').setView([0, 0], 1);
+        const mtLayer = L.maptilerLayer({
+          apiKey: key,
+          style: "topo-v2", //optional
         }).addTo(map);
 
         L.control.zoom({
