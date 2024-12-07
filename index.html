@@ -176,6 +176,12 @@
         L.control.bigImage({position: 'bottomleft'}).addTo(map);
         //map.addControl( new L.Control.Compass() );
 
+
+      var myStyle = {
+          "color": "#ffa833",
+          "weight": 5,
+          "opacity": 0.8
+      };
                 
         var json_Walkingroutes_1 = {
           "type": "FeatureCollection",
@@ -193,7 +199,8 @@
           }
 
       
-        L.geoJSON(json_Walkingroutes_1).addTo(map);
+        L.geoJSON(json_Walkingroutes_1,
+                 style = myStyle).addTo(map);
               
         var greenIcon = new L.Icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-green.png',
