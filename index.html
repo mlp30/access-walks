@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="leaflet.BigImage.min.css" />
     <link rel="stylesheet" href="leaflet-compass.min.css" />
     <link rel="stylesheet" href="leaflet-compass.src.css" />
+    <link rel="stylesheet" href="leaflet-compass.css" />
+    
 
     <style type="text/css">
       body {
@@ -105,6 +107,7 @@
     <script src="leaflet.BigImage.min.js"></script>
     <script src="leaflet-compass.min.js"></script>
     <script src="leaflet-compass.src.js"></script>
+    <script src="leaflet-compass.js"></script>
 
 
     <script>
@@ -143,6 +146,8 @@
         gps.addTo(map);
 
 
+      var comp = new L.Control.Compass({autoActive: true, showDigit:true, position: "topleft"});
+      map.addControl(comp);
       
 
         /*Legend specific*/
