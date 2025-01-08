@@ -216,6 +216,17 @@
             shadowSize: [41, 41]
             });
 
+      var greenIcon1 = L.Icon.extend({
+        options: {
+            iconSize: [25, 41],
+            iconAnchor: [12, 41],
+            popupAnchor: [1, -34]
+        }
+    });
+
+    var greenIcon2 = new greenIcon1({iconUrl: 'https://github.com/mlp30/access-walks/blob/main/images/accesstrails_easy.png'});
+
+
         var orangeIcon = new L.Icon({
             iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-orange.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
@@ -253,7 +264,7 @@
       .bindPopup("<b>Camer Park </b><br>1.25 mile linear<br><a href='https://explorekent.org/activities/camer-park-stile-free-trail/''+' target=\'_blank\'>Link to route</a>")
       .addTo(map);
 
-      const marker4 = L.marker([51.068303,1.031767], {icon: greenIcon})
+      const marker4 = L.marker([51.068303,1.031767], {icon: greenIcon2})
         .bindPopup("<b>Royal Military Canal, West Hythe to Hythe </b><br>2 mile linear<br><a href='https://explorekent.org/activities/royal-military-canal-west-hythe-to-hythe/''+' target=\'_blank\'>Link to route</a>")
         .addTo(map);
 
