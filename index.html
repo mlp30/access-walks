@@ -158,6 +158,8 @@
           var div = L.DomUtil.create('div', 'info legend'),
               grades = ["Easy", "Medium", "Hard"],
               labels = ["images/accesstrails_easy_round.png","images/accesstrails_medium_round.png","images/accesstrails_hard_round.png"];
+
+          div.innerHTML += "<h4>Accessible walks guide</h4>";
       
           // loop through our density intervals and generate a label with a colored square for each interval
           for (var i = 0; i < grades.length; i++) {
