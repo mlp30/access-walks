@@ -108,13 +108,12 @@
       //  style: L.maptiler.MapStyle.OUTDOOR, //optional
       //}).addTo(map);
 
-    maptilersdk.config.apiKey = 'vuemkMjb7qtDVkeM7Bq2	';
-      const map = new maptilersdk.Map({
-        container: 'map', // container's id or the HTML element to render the map
-        style: maptilersdk.MapStyle.OUTDOOR,
-        center: [50.874184, 0.642717], // starting position [lng, lat]
-        zoom: 7, // starting zoom
-      });
+      const key = 'vuemkMjb7qtDVkeM7Bq2';
+      const map = L.map('map').setView([50.874184, 0.642717], 7);
+      const mtLayer = L.maptiler.maptilerLayer({
+        apiKey: key,
+        style: L.maptiler.MapStyle.OUTDOOR, //optional
+      }).addTo(map);
       
     L.control.zoom({
             position: 'bottomright'
