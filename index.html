@@ -101,15 +101,22 @@
     <script src="leaflet-compass.js"></script>
     <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script>
-      const key = 'vuemkMjb7qtDVkeM7Bq2';
-      const map = L.map('map').setView([52.907137,-1.409850], 7);
-      const mtLayer = L.maptiler.maptilerLayer({
-        apiKey: key,
-        style: L.maptiler.MapStyle.OUTDOOR, //optional
-      }).addTo(map);
+      //const key = 'vuemkMjb7qtDVkeM7Bq2';
+      //const map = L.map('map').setView([52.907137,-1.409850], 7);
+      //const mtLayer = L.maptiler.maptilerLayer({
+      //  apiKey: key,
+      //  style: L.maptiler.MapStyle.OUTDOOR, //optional
+      //}).addTo(map);
 
-
-L.control.zoom({
+    maptilersdk.config.apiKey = 'vuemkMjb7qtDVkeM7Bq2	';
+      const map = new maptilersdk.Map({
+        container: 'map', // container's id or the HTML element to render the map
+        style: 'https://api.maptiler.com/maps/2e1377d9-9f8b-4aa6-8b9c-3c586c274eaa/style.json?key=vuemkMjb7qtDVkeM7Bq2',
+        center: [10.989249486220501, 46.948652944430734], // starting position [lng, lat]
+        zoom: 11, // starting zoom
+      });
+      
+    L.control.zoom({
             position: 'bottomright'
         }).addTo(map);
 
