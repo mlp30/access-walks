@@ -93,7 +93,18 @@
     </style>
   </head>
   <body>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <div id="map"></div>
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+    <script src="leaflet-gps.js"></script>
+    <script src="leaflet.BigImage.min.js"></script>
+    <script src="leaflet-compass.min.js"></script>
+    <script src="leaflet-compass.src.js"></script>
+    <script src="leaflet-compass.js"></script>
+    <script src="https://unpkg.com/leaflet-control-geocoder/dist/Control.Geocoder.js"></script>
     <script>
       const key = 'vuemkMjb7qtDVkeM7Bq2';
       const map = L.map('map').setView([52.907137,-1.409850], 7);
@@ -101,6 +112,61 @@
         apiKey: key,
         style: L.maptiler.MapStyle.OUTDOOR, //optional
       }).addTo(map);
+
+
+L.control.zoom({
+            position: 'bottomright'
+        }).addTo(map);
+
+        L.Control.geocoder({position: 'bottomleft'}).addTo(map);
+
+
+
+              var gps = new L.Control.Gps({
+            //autoActive:true,
+            autoCenter:true,
+                setView:true
+        });//inizialize control
+
+        gps
+        .on('gps:located', function(e) {
+            //  e.marker.bindPopup(e.latlng.toString()).openPopup()
+            console.log(e.latlng, map.getCenter())
+        })
+        .on('gps:disabled', function(e) {
+            e.marker.closePopup()
+        });
+
+        gps.addTo(map);
+
+
+      var comp = new L.Control.Compass({autoActive: true, showDigit:true, position: "topleft"});
+      map.addControl(comp);
+      
+
+        /*Legend specific*/
+        var legend = L.control({ position: "topright" });
+        legend.onAdd = function (map) {
+
+          var div = L.DomUtil.create('div', 'info legend'),
+              grades = ["Easy", "Medium", "Hard"],
+              labels = ["images/accesstrails_easy_round.png","images/accesstrails_medium_round.png","images/accesstrails_hard_round.png"];
+
+          div.innerHTML += "<h4>Accessible walks legend</h4>";
+      
+          // loop through our density intervals and generate a label with a colored square for each interval
+          for (var i = 0; i < grades.length; i++) {
+              div.innerHTML +=
+                  (" <img src="+ labels[i] +" height='50' width='50'>") + grades[i] +'<br>';
+          }
+          return div;
+      };
+        legend.addTo(map);
+        L.control.bigImage({position: 'bottomleft'}).addTo(map);
+        //map.addControl( new L.Control.Compass() );
+
+        L.control.scale({position: 'bottomright'}).addTo(map);
+
     </script>
   </body>
 </html>
